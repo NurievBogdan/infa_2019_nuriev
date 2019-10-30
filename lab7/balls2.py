@@ -45,7 +45,7 @@ class Ball:
         for i in range(quantity):
             for j in range(2, quantity):
                 if j == i+1:
-                    if( ( ( (balls[i].x - balls[j].x)**2 + (balls[i].y == balls[j].y)**2))**0.5 <= balls[i].r + balls[j].r):
+                    if( ( ( (balls[i].x - balls[j].x)**2 + (balls[i].y - balls[j].y)**2))**0.5 <= balls[i].r + balls[j].r):
                         balls[i].vx *= -1
                         balls[i].vy *= -1
                         balls[j].vx *= -1
