@@ -58,9 +58,10 @@ class Ball1(Ball):
 					balls2[j].vx *= -1
 					balls2[j].vy *= -1
 			for i in range(quantity):
-				if( ( ( (balls1[i].x - balls1[j].x)**2 + (balls1[i].y - balls1[j].y)**2))**0.5 <= balls1[i].r + balls1[j].r):
-					canv.delete(ball1, id)
-					canv.delete(ball1, id)
+				for j in range(quantity):
+					if( ( ( (balls1[i].x - balls1[j].x)**2 + (balls1[i].y - balls1[j].y)**2))**0.5 <= balls1[i].r + balls1[j].r):
+						balls1.remove(balls1[i])
+						balls1.remove(balls1[j])
 
 class Ball2(Ball):
 	def initialization(self):
@@ -70,8 +71,8 @@ class Ball2(Ball):
 		for i in range(quantity):
 			for j in range(quantity):
 				if( ( ( (balls2[i].x - balls2[j].x)**2 + (balls2[i].y - balls2[j].y)**2))**0.5 <= balls2[i].r + balls2[j].r):
-					canv.delete(ball2, id)
-					canv.delete(ball2, id)	
+					balls2.remove(balls2[i])
+					balls2.remove(balls2[j])
 balls1 = []
 balls2 = []
 
@@ -83,7 +84,6 @@ for i in range(quantity):
 for ball1 in balls1:
 	ball1.draw()
 	ball1.move()
-	ball1.move_plus()
 
 for i in range(quantity):
 	ball2 = Ball2(name=('ball2' + str(i)))
@@ -91,6 +91,12 @@ for i in range(quantity):
 for ball2 in balls2:
 	ball2.draw()
 	ball2.move()
+
+for ball1 in balls1:
+	ball1.move_plus()
+for ball2 in balls2:
 	ball2.move_plus()
+
+
 
 tk.mainloop()
